@@ -5,7 +5,9 @@ function Timer(props) {
     const[time, setTime] = useState(10);
 
     useEffect(() => {
-        setTimeout(decrTime, 1000)
+        if(time > 0 && props.started) {  
+            setTimeout(decrTime, 1000)
+        }
     })
 
     const decrTime = () => {
