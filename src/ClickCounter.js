@@ -8,24 +8,34 @@ function ClickCounter() {
     useEffect(() => {
         if(time > 0 && started) {  
             setTimeout(decrTime, 1000);
-        } 
+        } else if (time === 0) {
+            stop();
+        }
     })
 
     const decrTime = () => {
         setTime(time - 1);
-        if(time === 0) {
-            setStarted(false);
-        }
     } 
 
     const start = () => {
         if(time === 10) { 
+            incrCount(count + 1);
             setStarted(true);
         }
     }
 
+    const stop = () => {
+        setStarted(false);
+    }
+
     const incrCount = () => {
         setCount(count + 1);
+    }
+
+    const reset = () => {
+        setCount(0);
+        stop();
+        setTime(10);
     }
 
     return (
@@ -33,6 +43,7 @@ function ClickCounter() {
             <h1 class="mb-3">How Fast Can You Click?</h1>
             <h3>Time: {time}</h3>
             <h3>Click count: {count}</h3>
+            <button class="btn btn-danger" onClick={reset}>Reset</button>
             <button class="btn btn-primary" onClick={started ? incrCount : start}>Click Me!</button>
         </div>
     )
