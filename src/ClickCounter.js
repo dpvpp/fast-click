@@ -14,7 +14,9 @@ function ClickCounter() {
     })
 
     const decrTime = () => {
-        setTime(time - 1);
+        if(started) {
+            setTime(time - 1);
+        }
     } 
 
     const start = () => {
