@@ -20,7 +20,8 @@ function ClickCounter() {
     } 
 
     const start = () => {
-        if(time === 10) { 
+        if(!started) { 
+            setTime(10);
             incrCount(count + 1);
             setStarted(true);
         }
@@ -35,6 +36,7 @@ function ClickCounter() {
     }
 
     const reset = () => {
+        stop();
         setCount(0);
         setTime(10);
     }
@@ -48,14 +50,14 @@ function ClickCounter() {
                 {/* <button class="btn btn-danger" onClick={reset} style={{margin:'5px', fontSize:'25px'}}>--</button>
                 <button class="btn btn-danger" onClick={reset} style={{margin:'5px', fontSize:'25px'}}>-</button> */}
                 Time: 
-                <span style={{color: (started ? "green" : "black")}}> {time}</span>
+                <span style={{color: (started ? "green" : "black")}}> {started ? time : 10}</span>
                 {/* <button class="btn btn-success" onClick={reset} style={{margin:'5px', fontSize:'25px'}}>+</button>
                 <button class="btn btn-success" onClick={reset} style={{margin:'5px', fontSize:'25px'}}>++</button> */}
             </h3>
             
 
             <h3>Click count: {count}</h3>
-            <button class="btn btn-danger" onClick={started ? stop : reset}>{started ? "Stop" : "Reset"}</button>
+            <button class="btn btn-danger" onClick={reset}>{"Reset"}</button>
             <button class="btn btn-primary" onClick={started ? incrCount : start} >Click Me!</button>
         </div>
     )
